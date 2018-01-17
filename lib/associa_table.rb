@@ -1,4 +1,4 @@
-require_relative '02_searchable'
+srequire_relative '02_searchable'
 require 'active_support/inflector'
 
 class AssocOptions
