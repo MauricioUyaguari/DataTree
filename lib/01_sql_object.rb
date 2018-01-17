@@ -20,8 +20,8 @@ class SQLObject
         FROM
         #{table}
         limit 0
-        SQL
-        @output = @output[0].map! { |col| col.to_sym }
+      SQL
+      @output = @output[0].map! { |col| col.to_sym }
     else
       @output
     end
@@ -45,7 +45,7 @@ class SQLObject
       *
       FROM
       #{table}
-      SQL
+    SQL
     all = all[1..-1]
     self.parse_all(all)
   end
@@ -78,7 +78,6 @@ class SQLObject
     raise "unknown attribute '#{param[0].to_s}'" if columns.include?(param[0].to_sym) == false
     send("#{param[0]}=",param[1])
     end
-
   end
 
   def attributes
@@ -103,8 +102,8 @@ class SQLObject
        #{self.class.table_name} (#{col_names})
      VALUES
        (#{questions})
-   SQL
-   self.id = DBConnection.last_insert_row_id
+    SQL
+    self.id = DBConnection.last_insert_row_id
   end
 
   def update
@@ -116,7 +115,7 @@ class SQLObject
       #{columns}
       WHERE
       #{self.class.table_name}.id = ?
-      SQL
+    SQL
   end
 
   def save
