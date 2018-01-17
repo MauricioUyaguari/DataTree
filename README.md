@@ -9,9 +9,39 @@ DataTree is a lightweight version of ActiveRecord.  Like ActiveRecord, DataTree'
 The main lib consists of the following files
   * #sql_object.rb
   * #searchable.rb
-  * #assocations.rb
+  * #associations.rb
   * #has_through.rb
 
 ### sql_object
 
-This file contains the sql object class which contains a class to a SQL table.  It contains the following useful methods that will be used 
+This file contains the sql object class which connects itself to a sql table. Additionally it contains useful methods such as the following that will be useful for the user.
+
+  * #update
+  * #insert
+  * #save
+  * #all
+  * #find
+
+## searchable.rb
+One of the most useful methods that is used in SQl is where and this file contains this method which can be used with the sql sql object
+
+## associations.rb
+
+One of the most powerful features of DataTree is its ability to connect different SQL tables through their corresponding classes through associations.  Here we established the two most import associations between two tables
+  *#belongs_to
+  *has_many
+
+## has_through.rb
+
+Going further another useful association is one born between two corresponding associations.  This one was for a has_one through two belongs_to relationships.
+
+
+## db_connection.rb
+This file contains some setup information for the futbul.sql file which created the soccer_players, teams and leagues tables. 
+
+# Going further
+
+This library will be helpful in grabbing and manipulating data to meet the needs of the developer quickly and without much configuration.
+
+## To Do
+  * Continue to add more methods and joins betweens classes

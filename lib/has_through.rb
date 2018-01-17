@@ -32,11 +32,6 @@ module Associatable
 
 
   def has_many_through(name, through_name, source_name)
-    # define_method(name) do
-    #   through_options = self.class.assoc_options[through_name]
-    #   through_table = through_options
-    #
-    # end
 
   end
 end
