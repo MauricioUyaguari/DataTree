@@ -1,7 +1,9 @@
 # DataTree
 
 
-DataTree is a lightweight version of ActiveRecord.  Like ActiveRecord, DataTree's main goal is to connect Ruby classes to relational database tables stored in a SQL language.  In common applications these classes will be referred to as models.  These classes often have relationships between each other, which will be defined as assocations.   The purpose of DataTree is for a user to quickly and careful use SQL table name and relationship in a r
+![ORM](/images/ORM.jpg)
+
+DataTree is an Object Relational Mapping (ORM) system.  DataTree is a lightweight version of ActiveRecord.  Like ActiveRecord, DataTree's main goal is to connect Ruby classes to relational database tables stored in a SQL language.  In common applications these classes will be referred to as models.  These classes often have relationships between each other, which will be defined as associations.
 
 
 ## Lib
@@ -14,8 +16,7 @@ The main lib consists of the following files
 
 ### sql_object
 
-This file contains the sql object class which connects itself to a sql table. Additionally it contains useful methods such as the following that will be useful for the user.
-
+This file contains the sql object class which connects itself to a sql table.  It also contains the following methods that might be helpful for the user:
   * #update
   * #insert
   * #save
@@ -23,7 +24,7 @@ This file contains the sql object class which connects itself to a sql table. Ad
   * #find
 
 ## searchable.rb
-One of the most useful methods that is used in SQl is where and this file contains this method which can be used with the sql sql object
+One of the most useful methods that is used in SQl is where and this file contains this method which can be used with the sql object.
 
 ## associations.rb
 
@@ -37,7 +38,7 @@ Going further another useful association is one born between two corresponding a
 
 
 ## db_connection.rb
-This file contains some setup information for the futbul.sql file which created the soccer_players, teams and leagues tables. 
+This file contains some setup information for the futbul.sql file which created the soccer_players, teams and leagues tables.
 
 # Going further
 
