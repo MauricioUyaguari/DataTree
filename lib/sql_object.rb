@@ -72,6 +72,19 @@ class SQLObject
     self.new(all[0])
   end
 
+  def self.select(column)
+    col = column.to_sym
+    all = DBConnection.execute(<<-SQL)
+    SELECT
+      #{table}.#{col}
+      FROM
+      #{table}
+    SQL
+    return nil if all.empty?
+    all = all[1..-1]
+    self.parse_all(all)
+  end
+
   def initialize(params = {})
     columns = self.class.columns
     params.each do |param|
