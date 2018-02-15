@@ -36,7 +36,7 @@ end
 ```
 
 ## searchable.rb
-One of the most useful methods that is used in SQl is where and this file contains this method which can be used with the sql object.
+One of the most useful methods that is used in SQl is the table.where and this file contains this method which can be used with the sql object.
 
 ```ruby
 def where(params)
@@ -61,9 +61,37 @@ One of the most powerful features of DataTree is its ability to connect differen
 
 ## has_through.rb
 
-Going further another useful association is one born between two corresponding associations.  This one was for a has_one through two belongs_to relationships.
+Going further another useful association is one born between two corresponding associations.  This one was for a has_one through two belongs_to relationships. As you can see below it uses the through name and source name to obtain the desired information.
 
 
+```ruby
+def has_one_through(name, through_name, source_name)
+
+  define_method(name) do
+    through_options = self.class.assoc_options[through_name]
+    through_table = through_options.table_name
+    through_primary_key = through_options.primary_key
+    source_options = through_options.model_class.assoc_options[source_name]
+    source_table = source_options.table_name
+    source_primary_key = source_options.primary_key
+    source_foreign_key = source_options.foreign_key
+    value = self.send(through_options.foreign_key)
+    results = DBConnection.execute(<<-SQL, value)
+    SELECT
+    #{source_table}.*
+    FROM
+    #{through_table}
+    JOIN
+    #{source_table}
+    ON
+    #{through_table}.#{source_foreign_key} = #{source_table}.#{source_primary_key}
+    WHERE
+    #{through_table}.#{through_primary_key} = ?
+    SQL
+    return source_options.model_class.parse_all(results).first
+  end
+end
+```
 ## db_connection.rb
 This file contains some setup information for the futbul.sql file which created the soccer_players, teams and leagues tables.
 
